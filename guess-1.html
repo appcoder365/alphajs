@@ -25,6 +25,7 @@
         
         <script src="//use.edgefonts.net/actor.js"></script>
         <script>
+            // ------------------COLLECT ELEMENTS -------------------
             // get the start button
             var btnStart = document.getElementById('btnStart');
             
@@ -36,12 +37,13 @@
             
             // get the result element
             var result = document.getElementById('result');
+            // -----------------------------------------------------------------------------------
             
             
             
+            // ------------------------------- SETUP THE APP LOGIC -------------------------------
             // the guess section should be hidden before the game starts
             guess.style.display = 'none';
-            
             
             // tell the button to do something --> add an event listener
             btnStart.addEventListener('click', function(e) {
@@ -54,6 +56,7 @@
                 // 3. set the default "result" message
                 result.innerHTML = 'Start guessing!!! [Hint: the answer is ' + randomNumber + ']';
             });
+            // -----------------------------------------------------------------------------------
         </script>
     </body>
 </html>
