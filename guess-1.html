@@ -18,7 +18,9 @@
                     <button class="btn" id="btnCheck">Check</button>
                 </section>
                 <section class="well col-md-5 col-md-offset-1">
-                    <span id="result"></span>
+                    <strong id="result"></strong>
+                    <br>
+                    <span id="hint"></span>
                 </section>
             </div>
         </div>
@@ -32,12 +34,22 @@
             // get the guess section
             var guess = document.getElementById('guess');
             
+            // get the number textbox
+            var txtNumber = document.getElementById('txtNumber');
+            
             // get the check button
             var btnCheck = document.getElementById('btnCheck');
             
             // get the result element
             var result = document.getElementById('result');
+            
+            // get the hint element
+            var hint = document.getElementById('hint');
+            
+            // temporary variable to hold the random number
+            var randomNumber;
             // -----------------------------------------------------------------------------------
+            
             
             
             
@@ -45,16 +57,41 @@
             // the guess section should be hidden before the game starts
             guess.style.display = 'none';
             
-            // tell the button to do something --> add an event listener
+            // tell the start button to do something --> add an event listener
             btnStart.addEventListener('click', function(e) {
                 // 1. generate a random number and store it
-                var randomNumber = Math.floor(Math.random() * 10);
+                randomNumber = Math.floor(Math.random() * 10);
                 
                 // 2. "show" the guessing section
                 guess.style.display = 'block';
                 
                 // 3. set the default "result" message
-                result.innerHTML = 'Start guessing!!! [Hint: the answer is ' + randomNumber + ']';
+                result.innerHTML = 'Start guessing!';
+                
+                // 4. set the hint (optional - to make the game easy)
+                hint.innerHTML = '[Hint: the answer is ' + randomNumber + ']';
+            });
+            
+            // tell the check button to do something --> one more event listener
+            btnCheck.addEventListener('click', function(e) {
+                // get the value entered in the textbox
+                var textValue = txtNumber.value;
+                if (textValue === null) {
+                    // nothing is entered
+                    result.innerHTML = 'Nothing to check ... enter something';
+                } else {
+                    // something is entered
+                    // convert to number
+                    var number = parseInt(textValue);
+                    if (number === randomNumber) {
+                        result.innerHTML = 'Congrats! You guessed the number correctly.';
+                    } else {
+                        result.innerHTML = 'Wrong guess ... try again.';
+                        
+                        // should also clear the textbox
+                        txtNumber.value = null;
+                    }
+                }
             });
             // -----------------------------------------------------------------------------------
         </script>
