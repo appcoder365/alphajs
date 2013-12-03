@@ -2,8 +2,58 @@
 <html>
     <head>
         <title>Guess</title>
+        <link rel="stylesheet" href="vendors/bootstrap/css/bootstrap.css">
+        <link rel="stylesheet" href="vendors/bootstrap/css/bootstrap-theme.css">
+        <link rel="stylesheet" href="styles/guess-1.css">
     </head>
     <body>
-        Content ...
+        <div class="container well">
+            <button class="btn btn-primary" id="btnStart">Start the game</button>
+        </div>
+        <hr>
+        <div class="container">
+            <div class="row" id="guess">
+                <section class="well col-md-6">
+                    <input type="number" id="txtNumber" placeholder="Enter a number" />
+                    <button class="btn" id="btnCheck">Check</button>
+                </section>
+                <section class="well col-md-5 col-md-offset-1">
+                    <span id="result"></span>
+                </section>
+            </div>
+        </div>
+        
+        <script src="//use.edgefonts.net/actor.js"></script>
+        <script>
+            // get the start button
+            var btnStart = document.getElementById('btnStart');
+            
+            // get the guess section
+            var guess = document.getElementById('guess');
+            
+            // get the check button
+            var btnCheck = document.getElementById('btnCheck');
+            
+            // get the result element
+            var result = document.getElementById('result');
+            
+            
+            
+            // the guess section should be hidden before the game starts
+            guess.style.display = 'none';
+            
+            
+            // tell the button to do something --> add an event listener
+            btnStart.addEventListener('click', function(e) {
+                // 1. generate a random number and store it
+                var randomNumber = Math.floor(Math.random() * 10);
+                
+                // 2. "show" the guessing section
+                guess.style.display = 'block';
+                
+                // 3. set the default "result" message
+                result.innerHTML = 'Start guessing!!! [Hint: the answer is ' + randomNumber + ']';
+            });
+        </script>
     </body>
 </html>
